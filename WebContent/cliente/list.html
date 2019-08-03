@@ -1,0 +1,61 @@
+<html ng-app="loja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<h1>Lista de clientes</h1>
+
+<a href="#cliente/cadastro">Novo cliente
+	<img alt="Novo"	src="resources/img/add-icon.png">
+</a>
+<br />
+<br />
+
+<label>Filtro <input type="text" ng-model="filtro"></label>
+<br>
+<br>
+
+<div ng-controller="clienteController" ng-init="listarClientes(1)">
+
+	<div class="col-lg-12 col-md-8">
+		<div class="card">
+			<table class="table table-hover">
+				<thead>
+					<th>Código</th>
+					<th>Foto</th>
+					<th>Nome</th>
+					<th>Endereço</th>
+					<th>Celular</th>
+					<th>E-mail</th>
+					<th>Excluir</th>
+					<th>Editar</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="cliente in data | filter: filtro">
+						<td>{{cliente.id}}</td>
+						<td>
+							<img src="{{cliente.foto}}"	style="width: 40px; height: 43px;" />
+						</td>
+						<td style="text-transform: capitalize;">{{cliente.nome}}</td>
+						<td style="text-transform: capitalize;">{{cliente.endereco}}</td>
+						<td>{{cliente.celular}}</td>
+						<td style="text-transform: lowercase;">{{cliente.email}}</td>
+						<td><a href ng-click="removerCliente(cliente.id);"> <img
+								alt="Remover" title="Excluir" src="resources/img/delete-icon.png">
+						</a></td>
+						<td><a href ng-click="editarCliente(cliente.id);"> <img
+								alt="Editar" title="Editar" src="resources/img/edit-icon.png">
+						</a></td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	<div class="text-center" ng-hide="ocultarNavegacao">
+		<button type="button" class="btn btn-info btn-fill btn-wd"
+			ng-click="anterior();">Anterior</button>
+		<button type="button" class="btn btn-info btn-fill btn-wd"
+			ng-click="proximo();">Próximo</button>
+	</div>
+</div>
+</html>

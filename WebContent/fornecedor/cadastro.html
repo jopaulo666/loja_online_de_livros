@@ -1,0 +1,306 @@
+<html>
+<h1>Cadastro de Fornecedor</h1>
+
+<a href="#fornecedorlist"> Lista de fornecedor
+	<img alt="Editar" src="resources/img/list-icon.png">
+</a>
+<br>
+<br>
+
+<div class="col-lg-11 col-md-8" ng-init="carregarEstados();">
+	<div class="card">
+		<div class="header">
+			<h4 class="title">Novo fornecedor</h4>
+		</div>
+		<div class="content">
+			<form id="formFornecedor" ng-submit="salvarFornecedor();">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Código</label>
+							<input type="text" ng-model="fornecedor.id"
+								class="form-control border-input" disabled>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<img alt="Foto" id="imagemFornecedor" src="" style="width: 118px; height: 140px; border: 0">
+							<input type="file" id="file" onchange="javascript:visualizarImg();">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Razação Social</label>
+								<input type="text" ng-model="fornecedor.razaoSocial"
+									style="text-transform: capitalize;"
+									class="form-control border-input"
+									placeholder="Razão Social"
+									required="required">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="endereco">Nome Fantasia</label>
+								<input type="text" ng-model="fornecedor.nomeFantasia"
+									style="text-transform: capitalize;"
+									class="form-control border-input"
+									placeholder="Nome Fantasia"
+									required="required">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>CNPJ</label>
+							<input type="text"
+								id="cnpj"
+								ng-model="fornecedor.cnpj"
+								class="form-control border-input"
+								placeholder="99.999.999/9999-99"
+								required="required">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Celular</label>
+							<input type="text"
+								id="celular" 
+								ng-model="fornecedor.celular"
+								class="form-control border-input" 
+								placeholder="(99) 99999-9999"
+								required="required">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Telefone</label>
+							<input type="text"
+								id="telefone" 
+								ng-model="fornecedor.telefone"
+								class="form-control border-input" 
+								placeholder="(99) 9999-9999"
+								required="required">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Site</label>
+							<input type="text"
+								ng-model="fornecedor.site"
+								style="text-transform: lowercase;"
+								class="form-control border-input" 
+								placeholder="www.exemplo.com.br">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>E-mail</label>
+							<input type="email"
+								ng-model="fornecedor.email"
+								style="text-transform: lowercase;"
+								class="form-control border-input" 
+								placeholder="exemplo@teste.com"
+								required="required">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label for="cep">CEP</label>
+								<input name="cep" type="text"
+									value=""
+									ng-model="fornecedor.cep"
+									id="cep"
+									class="form-control border-input"
+									placeholder="Somente números"
+									required="required">
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label for="numero">Número</label>
+								<input type="text" ng-model="fornecedor.numero"
+								class="form-control border-input"
+								placeholder="999"
+								required="required">
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="form-group">
+							<label for="endereco">Endereço</label>
+								<input name="rua" type="text" id="rua" 
+								ng-model="fornecedor.endereco"
+								style="text-transform: capitalize;"
+								class="form-control border-input"
+								placeholder="Ex: Rua Presidente Vargas"
+								required="required">
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>Inscrição Estadual</label>
+							<input type="inscricaoEstadual"
+								ng-model="fornecedor.inscricaoEstadual"
+								class="form-control border-input" 
+								placeholder="Somente números">
+						</div>
+					</div>
+					<div class="col-md-3">
+							<div class="form-group">
+								<label for="estado">Estado</label>
+									<input name="uf" type="text" id="uf"
+									ng-model="fornecedor.estados"
+									style="text-transform: capitalize;"
+									class="form-control border-input"
+									placeholder="Ex: Pará"
+									required="required">
+							</div>
+						</div>
+						<div class="col-md-5">
+							<div class="form-group">
+								<label for="cidade">Cidade</label>
+									<input name="cidade" type="text" id="cidade"
+									ng-model="fornecedor.cidades"
+									style="text-transform: capitalize;"
+									class="form-control border-input"
+									placeholder="Ex: Belém"
+									required="required">
+							</div>
+						</div>
+						<div class="col-md-1">
+							<div class="form-group">
+								<label>Ativo</label>
+								<input type="checkbox" class="form-control border-input" ng-model="fornecedor.ativo">
+							</div>
+						</div>
+<!-- 					<div class="col-md-3"> -->
+<!-- 						<div class="form-group">  -->
+<!-- 						   <label>Estado</label>  -->
+<!-- 							<select ng-model="fornecedor.estados.id" -->
+<!-- 								 id="selectEstados" -->
+<!-- 								  class="form-control" onchange="javascript:carregarCidadesChrome(this);">  -->
+<!-- 								  <option value="">Selecione</option>  -->
+<!-- 								  <option -->
+<!-- 								  	ng-repeat="est in dataEstados"   -->
+<!-- 								  	ng-click="carregarCidades(est)" -->
+<!-- 								  	value="{{est.id}}">{{est.nome}} -->
+<!-- 								  </option> -->
+<!-- 							</select>	 -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-5"> -->
+<!-- 						<div class="form-group">  -->
+<!-- 						   <label>Cidades</label>  -->
+<!-- 							<select id="selectCidades" ng-model="fornecedor.cidades.id"  -->
+<!-- 							class="form-control">  -->
+<!-- 							<option value="">Selecione</option> -->
+<!-- 							  <option -->
+<!-- 								  ng-repeat="cid in cidades" -->
+<!-- 								  value="{{cid.id}}">{{cid.nome}} -->
+<!-- 							  </option> -->
+<!-- 							</select>	 -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+				</div>
+				
+				<div class="text-center">
+					<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+					<button type="button" class="btn btn-info btn-fill btn-wd"
+						onclick="document.getElementById('formFornecedor').reset();">Limpar
+					</button>
+				</div>
+				<p class="text-right">*Obrigatório</p>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- carrega as máscaras -->
+<script type="text/javascript">
+	$('#celular').mask('(99) 99999-9999');
+	$('#telefone').mask('(99) 9999-9999');
+	$('#cnpj').mask('99.999.999/9999-99');
+	$('#cep').mask('99999999');
+</script>
+
+<!-- Adicionando Javascript -->
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				function limpa_formulário_cep() {
+					// Limpa valores do formulário de cep.
+					$("#rua").val("");
+					$("#bairro").val("");
+					$("#cidade").val("");
+					$("#uf").val("");
+					$("#ibge").val("");
+				}
+
+				//Quando o campo cep perde o foco.
+				$("#cep").blur(
+						function() {
+
+							//Nova variável "cep" somente com dígitos.
+							var cep = $(this).val().replace(/\D/g, '');
+
+							//Verifica se campo cep possui valor informado.
+							if (cep != "") {
+
+								//Expressão regular para validar o CEP.
+								var validacep = /^[0-9]{8}$/;
+
+								//Valida o formato do CEP.
+								if (validacep.test(cep)) {
+
+									//Preenche os campos com "..." enquanto consulta webservice.
+									$("#rua").val("...");
+									$("#bairro").val("...");
+									$("#cidade").val("...");
+									$("#uf").val("...");
+									$("#ibge").val("...");
+
+									//Consulta o webservice viacep.com.br/
+									$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
+
+										if (!("erro" in dados)) {
+											//Atualiza os campos com os valores da consulta.
+											$("#rua").val(dados.logradouro);
+											$("#bairro").val(dados.bairro);
+											$("#cidade").val(dados.localidade);
+											$("#uf").val(dados.uf);
+											$("#ibge").val(dados.ibge);
+										} //end if.
+										else {
+											//CEP pesquisado não foi encontrado.
+											limpa_formulário_cep();
+											alert("CEP não encontrado.");
+										}
+									});
+								} //end if.
+								else {
+									//cep é inválido.
+									limpa_formulário_cep();
+									alert("Formato de CEP inválido.");
+								}
+							} //end if.
+							else {
+								//cep sem valor, limpa formulário.
+								limpa_formulário_cep();
+							}
+						});
+			});
+</script>
+</html>
